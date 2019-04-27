@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <head>
+    <style>
+      body{
+        background: url(https://i.gifer.com/ENjk.gif);
+        background-size: cover;
+      }
+      .row{
+        margin-top:75px;
+      }
+      .card{
+        background: rgba(0,0,0,0.7);
+        color: white;
+        box-sizing: border-box;
+        box-shadow: 0 15px 25px rgba(0,0,0,0.5);
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="row justify-content-center">
+      <div class="col-6">
+        <div class="card">
+          <div class="card-body">
+            <h2>LOG IN</h2>
+            <form method="post" novalidate>
+              {% csrf_token %}
+              {{ form|crispy }}
+              <button type="submit" class="btn btn-primary">LOG IN</button>
+              <a href="{% url 'password_reset' %}" class="btn btn-link">Forgot your password?</a>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+{% endblock %}

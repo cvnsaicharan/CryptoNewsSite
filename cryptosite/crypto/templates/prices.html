@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <head>
+        <style>
+            body{
+                background: url(https://thumbs.gfycat.com/FlusteredFrankHoopoe-size_restricted.gif) center;
+                color: white;
+                background-size: cover;
+            }
+            .jumbotron{
+                color:black;
+                overflow: auto;
+            }
+            #image1 img{
+                height:300px;
+                width:350px;
+                float: right;
+                mix-blend-mode: multiply;
+                background: transparent !important;
+            }
+
+        </style>
+    </head>
+    <body>
+    {% if notfound %}
+        <div class="jumbotron" id="image1">
+                 <h3>{{ notfound }} <img src="http://pixsector.com/cache/33b9ca1f/av02a6c049a39344bd3ba.png" alt="above"></h3>
+        </div>
+
+
+    {% else %}
+        {% if crypto.Response %}
+            <div class="jumbotron text-center">
+               <img src="https://vevmo.com/sites/default/files/upload/no_results.png" alt="above">
+            </div>
+        {% endif %}
+        {% for key,value in crypto.DISPLAY.items %}
+        <div class="jumbotron">
+            <h1 class="display-4">{{ key }}</h1>
+            <strong>Name : </strong>{{ key }}<br/>
+            <strong>Price : </strong>{{ value.INR.PRICE }}<br/>
+            <strong>Day High : </strong>{{ value.INR.HIGHDAY }}<br/>
+            <strong>Day Low : </strong>{{ value.INR.LOWDAY }}<br/>
+            <strong>Market Cap : </strong>{{ value.INR.MKTCAP }}<br/>
+        </div>
+        <br/><br/>
+        {% endfor %}
+
+    {% endif %}
+    </body>
+{% endblock %}
