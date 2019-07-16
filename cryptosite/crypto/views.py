@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 
 
-def home(request):
+def index(request):
     import requests
     import json
 
@@ -10,7 +10,7 @@ def home(request):
     price_request = requests.get("https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,BCH,ETH,BCH,EOS,LTC,BCH,ETC,ZEC,QTUM,NEO,BSV,BGG,DASH,BNB,OKB,ABT,ZB,ONT,OMG,XMR,AE,TRUE,DOGE,RVN,XLM,ADA,USDT,MIOTA,TRX,XRP,RVN,HT,IOST,PAX,OCN,SWFTC,BTT,FET,TUSD,GTC,TCH,BTS,TCC,WAVES,ICX,IOT,XEM,ZIL,BAT,IHT,BMX,SNT&tsyms=INR")
     price = json.loads(price_request.content)
 
-    return render(request, 'home.html', {'price': price})
+    return render(request, 'index.html', {'price': price})
 
 def prices(request):
     if request.method == 'POST':
@@ -42,7 +42,7 @@ def signup(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('index')
     else:
         form = UserCreationForm()
     return render(request, 'registration/signup.html', {
